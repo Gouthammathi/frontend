@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
-import {FiUpload,  FiSend,  FiDownload, FiTrendingUp } from 'react-icons/fi'
+import { FiUpload, FiSend, FiDownload, FiTrendingUp } from 'react-icons/fi'
 import { useDropzone } from 'react-dropzone'
 import toast, { Toaster } from 'react-hot-toast'
 import { BsRobot, BsPerson } from 'react-icons/bs'
@@ -14,20 +14,9 @@ export default function Home() {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant', content: string }[]>([])
   const [isStreaming, setIsStreaming] = useState(false)
-  const [dark, setDark] = useState(false)
   const [score, setScore] = useState<number | null>(null)
   const [jobDesc, setJobDesc] = useState<string>('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme')
-    if (storedTheme === 'dark') {
-      setDark(true)
-      document.documentElement.classList.add('dark')
-    }
-  }, [])
-
-  
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { 'application/pdf': ['.pdf'] },
@@ -149,8 +138,6 @@ export default function Home() {
       <Toaster position="top-right" />
       <div className="max-w-4xl mx-auto relative">
         <h1 className="text-4xl font-bold text-center mb-10">Resume Chat Assistant</h1>
-
-        
 
         {!uploaded && (
           <section className="mb-10">
