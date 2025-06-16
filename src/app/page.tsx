@@ -18,6 +18,8 @@ export default function Home() {
   const [jobDesc, setJobDesc] = useState<string>('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
+  const BACKEND_URL = 'https://backend-tdnu.onrender.com'
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { 'application/pdf': ['.pdf'] },
     maxFiles: 1,
@@ -40,7 +42,7 @@ export default function Home() {
     formData.append('file', file)
 
     try {
-      const response = await axios.post('https://backend-tdnu.onrender.com/upload', formData, {
+      const response = await axios.post(`${BACKEND_URL}/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
@@ -65,7 +67,7 @@ export default function Home() {
     setIsStreaming(true)
 
     try {
-      const res = await fetch('https://backend-tdnu.onrender.com/chat', {
+      const res = await fetch(`${BACKEND_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMessage })
@@ -124,7 +126,7 @@ export default function Home() {
       return
     }
     try {
-      const res = await axios.post('https://backend-tdnu.onrender.com/score', { job_description: jobDesc })
+      const res = await axios.post(`${BACKEND_URL}/score`, { job_description: jobDesc })
       const { score } = res.data
       setScore(score)
       toast.success(`🎯 Role-fit Score: ${score}%`)
