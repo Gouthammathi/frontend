@@ -40,7 +40,7 @@ export default function Home() {
     formData.append('file', file)
 
     try {
-      const response = await axios.post('http://localhost:8000/upload', formData, {
+      const response = await axios.post('https://backend-tdnu.onrender.com/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
 
@@ -65,7 +65,7 @@ export default function Home() {
     setIsStreaming(true)
 
     try {
-      const res = await fetch('http://localhost:8000/chat', {
+      const res = await fetch('https://backend-tdnu.onrender.com/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMessage })
@@ -124,7 +124,7 @@ export default function Home() {
       return
     }
     try {
-      const res = await axios.post('http://localhost:8000/score', { job_description: jobDesc })
+      const res = await axios.post('https://backend-tdnu.onrender.com/score', { job_description: jobDesc })
       const { score } = res.data
       setScore(score)
       toast.success(`🎯 Role-fit Score: ${score}%`)
