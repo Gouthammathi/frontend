@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
-import { FiUpload, FiSend, FiSun, FiMoon, FiDownload, FiTrendingUp } from 'react-icons/fi'
+import {FiUpload,  FiSend,  FiDownload, FiTrendingUp } from 'react-icons/fi'
 import { useDropzone } from 'react-dropzone'
 import toast, { Toaster } from 'react-hot-toast'
 import { BsRobot, BsPerson } from 'react-icons/bs'
@@ -27,12 +27,7 @@ export default function Home() {
     }
   }, [])
 
-  const toggleDarkMode = () => {
-    const newTheme = !dark
-    setDark(newTheme)
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light')
-    document.documentElement.classList.toggle('dark', newTheme)
-  }
+  
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { 'application/pdf': ['.pdf'] },
