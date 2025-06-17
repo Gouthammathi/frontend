@@ -18,7 +18,7 @@ export default function Home() {
   const [jobDesc, setJobDesc] = useState<string>('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const BACKEND_URL = 'https://backend-tdnu.onrender.com'
+  const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { 'application/pdf': ['.pdf'] },
